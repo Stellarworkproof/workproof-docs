@@ -1,26 +1,48 @@
-# WorkProof
+# WorkProof Docs
 
 WorkProof is an on-chain labour completion escrow for informal skilled trades.
 
-## Standalone repos
+This repository holds the product framing around the system: what problem it solves, how the MVP is split across repos, and how to demo the first version clearly.
 
-- `workproof-contract`: Soroban smart contract for stablecoin escrow, release, dispute, and arbitrator resolution.
-- `workproof-web`: Responsive mobile-first React app for client and artisan flows.
-- `workproof-docs`: Product, demo, and deployment notes for the GitHub organisation.
+## Problem statement
 
-## MVP scope
+Across many informal trade markets, work begins with a handshake:
 
-- Client locks payment into the contract at job start.
-- Artisan sees that funds are locked before showing up.
-- Client releases payment after completion.
-- Either party can open a dispute.
-- Approved arbitrator can resolve disputed funds to the artisan or client.
+- the client worries about paying and getting abandoned
+- the artisan worries about finishing work and not getting paid
 
-## Demo script
+WorkProof uses low-fee on-chain escrow on Stellar to make that exchange verifiable without turning a small job into a high-fee platform transaction.
 
-1. Create a job for `NGN 40,000`.
-2. Tap `Lock funds`.
-3. Share the job link with the artisan.
-4. Move the job into work started.
-5. Release payment after completion.
-6. Optional: tap the amber dispute action to show the dispute hook.
+## Repository map
+
+- `workproof-contract`: Soroban contract for locking, releasing, disputing, and resolving funds
+- `workproof-web`: mobile-first interface for clients and artisans
+- `workproof-docs`: product notes, architecture framing, and demo material
+
+## MVP definition
+
+- client creates a job and locks funds
+- artisan can see that the money is already committed
+- client can release payment when work is complete
+- either party can open a dispute
+- approved arbitrators can resolve the escrow outcome
+
+## Suggested demo flow
+
+1. Start with a `NGN 40,000` job.
+2. Show the client locking funds.
+3. Show the artisan-facing view confirming that money is in escrow.
+4. Move the job to work started.
+5. Release payment and show the final paid state.
+6. Rewind and trigger dispute to show the arbitration hook.
+
+## Contents
+
+- [ARCHITECTURE.md](/home/mainnetforker/Desktop/Talent/Stellar/project4/workproof-docs/ARCHITECTURE.md): workspace and repo split
+
+## Near-term next steps
+
+- wire the web app to live Soroban calls
+- define arbitrator selection and reward rules
+- add deployment and testnet usage guides
+- write contributor and issue templates once the product shape stabilizes
